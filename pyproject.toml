@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "era5-pressure-trajectory-loader"
+version = "0.1.0"
+description = "ERA5 high/low pressure centre detection, tracking, and PyTorch loading"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "xarray>=2023.1",
+  "torch>=2.0",
+]
+
+[project.optional-dependencies]
+io = ["dask[array]>=2023.1", "netCDF4>=1.6", "zarr<3", "pyarrow>=12"]
+test = ["pytest>=7"]
+
+[project.scripts]
+era5-build-trajectories = "era5_pressure.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
